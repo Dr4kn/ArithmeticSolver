@@ -1,14 +1,82 @@
-val orderOfOperations = arrayOf('x', '/', '+', '-')
+val orderOfOperations = charArrayOf('x', '/', '-', '+')
+val operators = charArrayOf('x', '/', '+', '-')
+// uses floats because of the accuracy to reduce false positives of correct solutions
+// that they are not 100% accurate doesn't matter
+val numbers = floatArrayOf(-10F, 15F, 15F, 5F, 13F)
+const val solution = -5F
+val amountOfOperators = numbers.size - 1
+
 
 fun main() {
-//    val numbers = floatArrayOf(12F, 4F, 2F)
-//    val solution = 4F
-//    val allowedOperators = charArrayOf('x', '/', '+', '-')
-    createOperatorVariations(3, charArrayOf('x', '+','-'))
+    printSolution(buildSolutionArray(solver()))
 }
 
 
-fun createOperatorVariations(amountOfOperators: Int, operators: CharArray): ArrayList<CharArray> {
+fun printSolution(solutionsList: ArrayList<Array<Any>>) {
+    val solutionString = StringBuilder()
+
+    for (solution in solutionsList) {
+        for (char in solution) {
+            solutionString.append(char)
+            solutionString.append(" ")
+        }
+        solutionString.appendLine()
+    }
+    println(solutionString.toString())
+}
+
+
+fun buildSolutionArray(solutionsList: ArrayList<CharArray>): ArrayList<Array<Any>> {
+    val solutionArrays = ArrayList<Array<Any>>()
+    // size of number + size of operators (number - 1) and the last two
+    val calculation: Array<Any> = Array(numbers.size * 2 + 1) { 0 }
+    var i:Int
+    var nIndex:Int
+    var oIndex:Int
+    // = and solution never change
+    // same as numbers.size + operators.size
+    calculation[numbers.size * 2 - 1] = '='
+    // they are cast to int to look better
+    calculation[numbers.size * 2] = solution.toInt()
+
+    for (operators in solutionsList) {
+        i = 0
+        nIndex = 0
+        oIndex = 0
+
+        // because the solution list is one shorter this one is here
+        calculation[i++] = numbers[nIndex++].toInt()
+
+        while (i < numbers.size + operators.size) {
+            calculation[i++] = operators[oIndex++]
+            calculation[i++] = numbers[nIndex++].toInt()
+        }
+        solutionArrays.add(calculation)
+    }
+    return solutionArrays
+}
+
+
+fun solver(): ArrayList<CharArray> {
+    // could use an IntArray as CharArray representation, but the speed didn't matter
+    // this way it is much easier to debug visually for me
+    val possibleSolutions = ArrayList<CharArray>()
+
+    for (operators in createOperatorVariations()) {
+        if (evaluateCalculation(operators)) {
+            possibleSolutions.add(operators)
+        }
+    }
+
+    if (possibleSolutions.size == 0) {
+        throw Exception("There is no possible solution for this combination")
+    }
+
+    return possibleSolutions
+}
+
+
+fun createOperatorVariations(): ArrayList<CharArray> {
     val variations = ArrayList<CharArray>()
     // has to start with the maximum because the array is incremented from the back
     var currentPosition:Int = amountOfOperators - 1
@@ -23,6 +91,8 @@ fun createOperatorVariations(amountOfOperators: Int, operators: CharArray): Arra
         else {
             operatorVariations[currentPosition] = currentOperator // checked positions
             // goes from the numerical representation of the operators to the char representations
+            // you could evaluate the valid results here to not save every possible variation to do it later
+            // this way it is easier to test
             variations.add(CharArray(amountOfOperators) { i -> operators[operatorVariations[i]] })
 
             // if not last element go to the next right one
@@ -53,18 +123,19 @@ fun createOperatorVariations(amountOfOperators: Int, operators: CharArray): Arra
 }
 
 
-fun evaluateCalculation(operatorsToCheck: CharArray, numbers: FloatArray, solution: Float): Boolean {
+fun evaluateCalculation(operatorsToCheck: CharArray): Boolean {
     val operatorList = operatorsToCheck.toMutableList()
     val numberList = numbers.toMutableList()
 
-
-
     var result:Float
+    // could be done with a parser but tbh I didn't want to write one
     for (operatorToCheck in orderOfOperations) {
         var i = 0
-        // the operators are dropped out of the list when they are used therefore i
+
+        // makes every calculation in the mathematically correct order until the only one number is left
         while (i < operatorList.size) {
             if (operatorToCheck == operatorList[i]) {
+                // uses up the operators one at a time and also removes it numbering neighbors
                 result = operatorFromChar(operatorList[i]).invoke(numberList[i], numberList[i + 1])
                 operatorList.removeAt(i)
                 numberList.removeAt(i)
@@ -74,7 +145,10 @@ fun evaluateCalculation(operatorsToCheck: CharArray, numbers: FloatArray, soluti
                     return numberList[0] == solution
                 }
             }
-            i++
+            // necessary because when the same operator is behind it would jump over it
+            else {
+                i++
+            }
         }
     }
     return false
