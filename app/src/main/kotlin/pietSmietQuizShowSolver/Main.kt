@@ -1,4 +1,4 @@
-package PietSmietQuizShowSolver
+package pietSmietQuizShowSolver
 
 val orderOfOperations = charArrayOf('x', '/', '-', '+')
 val operators = charArrayOf('x', '/', '+', '-')
