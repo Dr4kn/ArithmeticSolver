@@ -1,3 +1,5 @@
+package PietSmietQuizShowSolver
+
 val orderOfOperations = charArrayOf('x', '/', '-', '+')
 val operators = charArrayOf('x', '/', '+', '-')
 // uses floats because of the accuracy to reduce false positives of correct solutions
