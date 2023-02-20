@@ -1,2 +1,0 @@
-/home/adrian/Documents/Programming/Problems/PietSmietQuizShowSolver/app/src/main/kotlin/PietSmietQuizShowSolver/App.kt
-/home/adrian/Documents/Programming/Problems/PietSmietQuizShowSolver/app/src/main/kotlin/PietSmietQuizShowSolver/Main.kt
