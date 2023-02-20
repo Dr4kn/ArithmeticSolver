@@ -8,7 +8,7 @@ val numbers = floatArrayOf(-10F, 15F, 15F, 5F, 13F)
 const val solution = -5F
 val amountOfOperators = numbers.size - 1
 
-
+// TODO refactor
 fun main() {
     printSolution(buildSolutionArray(solver()))
 }

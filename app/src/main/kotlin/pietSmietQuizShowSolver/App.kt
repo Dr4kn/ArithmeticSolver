@@ -6,3 +6,5 @@ package pietSmietQuizShowSolver
 fun main() {
     println("greeting")
 }
+// TODO add cli interface
+// TODO add testing
