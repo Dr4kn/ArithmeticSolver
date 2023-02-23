@@ -1,8 +1,9 @@
 package pietSmietQuizShowSolver
 
+// TODO use enums instead
 val orderOfOperations = charArrayOf('x', '/', '-', '+')
 val operators = charArrayOf('x', '/', '+', '-')
-// TODO refactor
+// TODO refactor to use number instead of Floats
 
 class Main(private val numbers: FloatArray, private var solution: Float) {
     private val amountOfOperators = numbers.size - 1
