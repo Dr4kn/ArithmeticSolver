@@ -5,7 +5,7 @@ val orderOfOperations = charArrayOf('x', '/', '-', '+')
 val operators = charArrayOf('x', '/', '+', '-')
 // TODO refactor to use number instead of Floats
 
-class Main(private val numbers: FloatArray, private var solution: Float) {
+class Solver(private val numbers: FloatArray, private var solution: Float) {
     private val amountOfOperators = numbers.size - 1
 
     fun solution() {

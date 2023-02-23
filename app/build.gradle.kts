@@ -38,5 +38,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("PietSmietQuizShowSolver.AppKt")
+    mainClass.set("pietSmietQuizShowSolver.AppKt")
 }
