@@ -4,7 +4,7 @@
 package pietSmietQuizShowSolver
 
 fun main() {
-    println("greeting")
+    Main(floatArrayOf(-10F, 15F, 15F, 5F, 13F), -5F).solution()
 }
 // TODO add cli interface
 // TODO add testing
