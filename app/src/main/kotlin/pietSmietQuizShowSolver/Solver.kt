@@ -5,10 +5,11 @@ val orderOfOperations = charArrayOf('x', '/', '-', '+')
 val operators = charArrayOf('x', '/', '+', '-')
 // TODO refactor to use number instead of Floats
 
-class Solver(private val numbers: FloatArray, private var solution: Float) {
+
+class Solver(private val numbers: FloatArray, private var solution: Float) : ISolver {
     private val amountOfOperators = numbers.size - 1
 
-    fun solution() {
+    internal fun solution() {
         printSolution(buildSolutionArray(solver()))
     }
 
@@ -26,7 +27,7 @@ class Solver(private val numbers: FloatArray, private var solution: Float) {
     }
 
 
-    internal fun buildSolutionArray(solutionsList: ArrayList<CharArray>): ArrayList<Array<Any>> {
+    override fun buildSolutionArray(solutionsList: ArrayList<CharArray>): ArrayList<Array<Any>> {
         val solutionArrays = ArrayList<Array<Any>>()
         // size of number + size of operators (number - 1) and the last two
         val calculation: Array<Any> = Array(numbers.size * 2 + 1) { 0 }
@@ -57,7 +58,7 @@ class Solver(private val numbers: FloatArray, private var solution: Float) {
     }
 
 
-    internal fun solver(): ArrayList<CharArray> {
+    override fun solver(): ArrayList<CharArray> {
         // could use an IntArray as CharArray representation, but the speed didn't matter
         // this way it is much easier to debug visually for me
         val possibleSolutions = ArrayList<CharArray>()
@@ -123,7 +124,7 @@ class Solver(private val numbers: FloatArray, private var solution: Float) {
     }
 
 
-    internal fun evaluateCalculation(operatorsToCheck: CharArray): Boolean {
+    private fun evaluateCalculation(operatorsToCheck: CharArray): Boolean {
         val operatorList = operatorsToCheck.toMutableList()
         val numberList = numbers.toMutableList()
 

@@ -6,12 +6,7 @@ import org.junit.jupiter.api.Assertions.*
 class SolverTest {
 
     @Test
-    fun solution() {
-    }
-
-    @Test
     fun buildSolutionArray() {
-
     }
 
     @Test
@@ -21,10 +16,6 @@ class SolverTest {
         val solver = Solver(numbers, solution).solver()
         val symbols = arrayListOf(charArrayOf('-', '+'))
         assertArrayEquals(solver[0], symbols[0])
-    }
-
-    @Test
-    fun evaluateCalculation() {
     }
 
     @BeforeEach
