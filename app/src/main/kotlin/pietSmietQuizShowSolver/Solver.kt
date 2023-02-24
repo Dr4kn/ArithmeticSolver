@@ -26,7 +26,7 @@ class Solver(private val numbers: FloatArray, private var solution: Float) {
     }
 
 
-    private fun buildSolutionArray(solutionsList: ArrayList<CharArray>): ArrayList<Array<Any>> {
+    internal fun buildSolutionArray(solutionsList: ArrayList<CharArray>): ArrayList<Array<Any>> {
         val solutionArrays = ArrayList<Array<Any>>()
         // size of number + size of operators (number - 1) and the last two
         val calculation: Array<Any> = Array(numbers.size * 2 + 1) { 0 }
@@ -57,7 +57,7 @@ class Solver(private val numbers: FloatArray, private var solution: Float) {
     }
 
 
-    private fun solver(): ArrayList<CharArray> {
+    internal fun solver(): ArrayList<CharArray> {
         // could use an IntArray as CharArray representation, but the speed didn't matter
         // this way it is much easier to debug visually for me
         val possibleSolutions = ArrayList<CharArray>()
@@ -123,7 +123,7 @@ class Solver(private val numbers: FloatArray, private var solution: Float) {
     }
 
 
-    private fun evaluateCalculation(operatorsToCheck: CharArray): Boolean {
+    internal fun evaluateCalculation(operatorsToCheck: CharArray): Boolean {
         val operatorList = operatorsToCheck.toMutableList()
         val numberList = numbers.toMutableList()
 
