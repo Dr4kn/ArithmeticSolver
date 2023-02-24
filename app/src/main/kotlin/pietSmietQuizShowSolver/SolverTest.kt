@@ -16,6 +16,11 @@ class SolverTest {
 
     @Test
     fun solver() {
+        val numbers = floatArrayOf(10F, 6F, 15F)
+        val solution = 19F
+        val solver = Solver(numbers, solution).solver()
+        val symbols = arrayListOf(charArrayOf('-', '+'))
+        assertArrayEquals(solver[0], symbols[0])
     }
 
     @Test
