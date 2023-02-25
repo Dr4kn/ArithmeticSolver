@@ -6,7 +6,16 @@ val operators = charArrayOf('x', '/', '+', '-')
 // TODO refactor to use number instead of Floats
 
 
-class Solver(private val numbers: FloatArray, private var solution: Float) : ISolver {
+class Solver(private val numbers: FloatArray, private val solution: Float) : ISolver {
+    init {
+        if (numbers.isEmpty()) {
+            throw IllegalArgumentException("no number was provided")
+        }
+        if (numbers.size == 1) {
+            throw IllegalArgumentException("can't calculate operators for a single number")
+        }
+    }
+
     private val amountOfOperators = numbers.size - 1
 
     internal fun solution() {
@@ -69,6 +78,7 @@ class Solver(private val numbers: FloatArray, private var solution: Float) : ISo
             }
         }
 
+        // FIXME is this exception actually needed?
         if (possibleSolutions.size == 0) {
             throw Exception("There is no possible solution for this combination")
         }
@@ -152,7 +162,9 @@ class Solver(private val numbers: FloatArray, private var solution: Float) : ISo
                 }
             }
         }
-        return false
+        // FIXME refactor in a way that this isn't needed anymore
+        // this should NEVER happen (I think)
+        throw IllegalStateException("Every operation should be checked")
     }
 
 
@@ -162,6 +174,7 @@ class Solver(private val numbers: FloatArray, private var solution: Float) : ISo
             '-'->{a,b->a-b}
             'x'->{a,b->a*b}
             '/'->{a,b->a/b}
+            // FIXME make this an enum
             else -> throw Exception("That's not a supported operator")
         }
     }
