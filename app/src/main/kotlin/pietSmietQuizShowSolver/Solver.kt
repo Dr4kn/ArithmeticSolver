@@ -3,7 +3,7 @@ package pietSmietQuizShowSolver
 // TODO use enums instead
 val orderOfOperations = charArrayOf('x', '/', '-', '+')
 val operators = charArrayOf('x', '/', '+', '-')
-// TODO refactor to use number instead of Floats
+// TODO refactor to use Big Decimal
 
 
 class Solver(private val numbers: FloatArray, private val solution: Float) : ISolver {
@@ -131,4 +131,5 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
         }
     }
 }
+
 

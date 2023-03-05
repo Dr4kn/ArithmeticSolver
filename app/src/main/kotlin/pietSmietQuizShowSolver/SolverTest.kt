@@ -96,7 +96,7 @@ class SolverTest {
 
 
     // FIXME first refactor then write those two
-    // TODO to small for int (32bit)
+    // TODO to small for int (32bit) make it use big decimal
 //    @Test
 //    fun toBigForInt() {
 //        val numbers = floatArrayOf(2147483647F, 1F)
