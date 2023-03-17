@@ -1,8 +1,6 @@
 package pietSmietQuizShowSolver
 
-// TODO use enums instead
-val orderOfOperations = charArrayOf('x', '/', '-', '+')
-val operators = charArrayOf('x', '/', '+', '-')
+val operators = ArithmeticOperators.values()
 // TODO refactor to use Big Decimal
 
 
@@ -19,10 +17,10 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
     private val amountOfOperators = numbers.size - 1
 
 
-    override fun solver(): ArrayList<CharArray> {
+    override fun solver(): ArrayList<Array<Enum<ArithmeticOperators>>> {
         // could use an IntArray as CharArray representation, but the speed didn't matter
         // this way it is much easier to debug visually for me
-        val possibleSolutions = ArrayList<CharArray>()
+        val possibleSolutions = ArrayList<Array<Enum<ArithmeticOperators>>>()
 
         for (operators in createOperatorVariations()) {
             if (evaluateCalculation(operators)) {
@@ -39,8 +37,8 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
     }
 
 
-    private fun createOperatorVariations(): ArrayList<CharArray> {
-        val variations = ArrayList<CharArray>()
+    private fun createOperatorVariations(): ArrayList<Array<Enum<ArithmeticOperators>>> {
+        val variations = ArrayList<Array<Enum<ArithmeticOperators>>>()
         // has to start with the maximum because the array is incremented from the back
         var currentPosition:Int = amountOfOperators - 1
         var currentOperator = 0
@@ -56,7 +54,7 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
                 // goes from the numerical representation of the operators to the char representations
                 // you could evaluate the valid results here to not save every possible variation to do it later
                 // this way it is easier to test
-                variations.add(CharArray(amountOfOperators) { i -> operators[operatorVariations[i]] })
+                variations.add(Array(amountOfOperators) { i -> operators[operatorVariations[i]] })
 
                 // if not last element go to the next right one
                 if (currentOperator < operators.size - 1) {
@@ -86,20 +84,20 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
     }
 
 
-    private fun evaluateCalculation(operatorsToCheck: CharArray): Boolean {
+    private fun evaluateCalculation(operatorsToCheck: Array<Enum<ArithmeticOperators>>): Boolean {
         val operatorList = operatorsToCheck.toMutableList()
         val numberList = numbers.toMutableList()
 
         var result:Float
         // could be done with a parser but tbh I didn't want to write one
-        for (operatorToCheck in orderOfOperations) {
+        for (operatorToCheck in ArithmeticOperators.values()) {
             var i = 0
 
             // makes every calculation in the mathematically correct order until the only one number is left
             while (i < operatorList.size) {
                 if (operatorToCheck == operatorList[i]) {
                     // uses up the operators one at a time and also removes it numbering neighbors
-                    result = operatorFromChar(operatorList[i]).invoke(numberList[i], numberList[i + 1])
+                    result = calculationFromOperator(operatorList[i]).invoke(numberList[i], numberList[i + 1])
                     operatorList.removeAt(i)
                     numberList.removeAt(i)
                     numberList[i] = result
@@ -120,16 +118,13 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
     }
 
 
-    private fun operatorFromChar(charOperator: Char):(Float, Float)->Float {
-        return when(charOperator) {
-            '+'->{a,b->a+b}
-            '-'->{a,b->a-b}
-            'x'->{a,b->a*b}
-            '/'->{a,b->a/b}
-            // FIXME make this an enum
-            else -> throw Exception("That's not a supported operator")
+    private fun calculationFromOperator(operator: Enum<ArithmeticOperators>):(Float, Float)->Float {
+        return when(operator) {
+            ArithmeticOperators.ADD->{a,b->a+b}
+            ArithmeticOperators.SUBTRACT->{ a, b->a-b}
+            ArithmeticOperators.MULTIPLY->{a,b->a*b}
+            ArithmeticOperators.DIVIDE->{a,b->a/b}
+            else -> {throw Exception("Not a valid enum: Must be an enum in ArithmeticOperators to be valid")}
         }
     }
 }
-
-

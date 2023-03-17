@@ -1,5 +1,5 @@
 package pietSmietQuizShowSolver
 
 interface ISolver {
-    fun solver(): ArrayList<CharArray>
+    fun solver(): ArrayList<Array<Enum<ArithmeticOperators>>>
 }

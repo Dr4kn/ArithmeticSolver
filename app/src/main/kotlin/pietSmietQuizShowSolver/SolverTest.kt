@@ -38,7 +38,7 @@ class SolverTest {
         val numbers = floatArrayOf(1000F, 50F)
         val solution = 20F
         val solver = Solver(numbers, solution).solver()
-        val symbols = arrayListOf(charArrayOf('/'))
+        val symbols = arrayListOf(arrayOf(ArithmeticOperators.DIVIDE))
         assertArrayEquals(solver[0], symbols[0])
     }
     @Test
@@ -46,7 +46,7 @@ class SolverTest {
         val numbers = floatArrayOf(10F, 6F, 15F)
         val solution = 19F
         val solver = Solver(numbers, solution).solver()
-        val symbols = arrayListOf(charArrayOf('-', '+'))
+        val symbols = arrayListOf(arrayOf(ArithmeticOperators.SUBTRACT, ArithmeticOperators.ADD))
         assertArrayEquals(solver[0], symbols[0])
     }
 
@@ -55,7 +55,7 @@ class SolverTest {
         val numbers = floatArrayOf(25F, 8F, 12F, 3F)
         val solution = 21F
         val solver = Solver(numbers, solution).solver()
-        val symbols = arrayListOf(charArrayOf('-', '+', '/'))
+        val symbols = arrayListOf(arrayOf(ArithmeticOperators.SUBTRACT, ArithmeticOperators.ADD, ArithmeticOperators.DIVIDE))
         assertArrayEquals(solver[0], symbols[0])
     }
 
@@ -64,7 +64,11 @@ class SolverTest {
         val numbers = floatArrayOf(-10F, 15F, 15F, 5F, 13F)
         val solution = -5F
         val solver = Solver(numbers, solution).solver()
-        val symbols = arrayListOf(charArrayOf('+', '+', '/', '-'))
+        val symbols = arrayListOf(arrayOf(
+            ArithmeticOperators.ADD,
+            ArithmeticOperators.ADD,
+            ArithmeticOperators.DIVIDE,
+            ArithmeticOperators.SUBTRACT))
         assertArrayEquals(solver[0], symbols[0])
     }
 
@@ -73,9 +77,10 @@ class SolverTest {
         val numbers = floatArrayOf(12F, 12F, 12F, 12F)
         val solution = 145F
         val solver = Solver(numbers, solution).solver()
-        val symbols1 = charArrayOf('x', '+', '/')
-        val symbols2 = charArrayOf('/', '+', 'x')
-
+        val symbols1 = arrayOf(ArithmeticOperators.MULTIPLY, ArithmeticOperators.ADD, ArithmeticOperators.DIVIDE)
+        val symbols2 = arrayOf(ArithmeticOperators.DIVIDE, ArithmeticOperators.ADD, ArithmeticOperators.MULTIPLY)
+        assertArrayEquals(solver[0], symbols1)
+        assertArrayEquals(solver[1], symbols2)
         assertTrue(solver[0].contentEquals(symbols1))
         assertTrue(solver[1].contentEquals(symbols2))
     }
