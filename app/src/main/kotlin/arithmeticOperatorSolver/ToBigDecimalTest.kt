@@ -9,25 +9,32 @@ class ToBigDecimalTest {
     @Test
     fun byteToBigDecimal() {
         val b = (127).toByte().toBigDecimal()
-        assertEquals(b, BigDecimal(127))
+        assertEquals(BigDecimal(127), b)
     }
 
     @Test
     fun byteToBigDecimalMC() {
         val b = (127).toByte().toBigDecimal(MathContext.UNLIMITED)
-        assertEquals(b, BigDecimal(127, MathContext.UNLIMITED))
+        assertEquals(BigDecimal(127, MathContext.UNLIMITED), b)
     }
 
     @Test
     fun shortToBigDecimal() {
         val s = (32767).toShort().toBigDecimal()
-        assertEquals(s, BigDecimal(32767))
+        assertEquals(BigDecimal(32767), s)
     }
 
     @Test
     fun shortToBigDecimalMC() {
         val s = (32767).toShort().toBigDecimal(MathContext.UNLIMITED)
-        assertEquals(s, BigDecimal(32767, MathContext.UNLIMITED))
+        assertEquals(BigDecimal(32767, MathContext.UNLIMITED), s)
+    }
+
+
+    @Test
+    fun numberToBigDecimalMC() {
+        val n:Number = 10
+        assertEquals(BigDecimal(10, MathContext.UNLIMITED), n.toBigDecimal(MathContext.UNLIMITED))
     }
 
 }
