@@ -1,10 +1,13 @@
 package arithmeticOperatorSolver
 
-val operators = ArithmeticOperators.values()
+import java.math.BigDecimal
+import java.math.MathContext
+
+private val operators = ArithmeticOperators.values()
 // TODO refactor to use Big Decimal
 
 
-class Solver(private val numbers: FloatArray, private val solution: Float) : ISolver {
+class Solver(numbers: Array<Number>, solution: Number) : ISolver {
     init {
         if (numbers.isEmpty()) {
             throw IllegalArgumentException("no number was provided")
@@ -12,17 +15,14 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
         if (numbers.size == 1) {
             throw IllegalArgumentException("can't calculate operators for a single number")
         }
-        for (number in numbers) {
-            number.toBigDecimal()
-        }
 
     }
     private val amountOfOperators = numbers.size - 1
 
+    private val numbers = Array(numbers.size) { i -> numbers[i].toBigDecimal(MathContext.UNLIMITED)}
+    private val solution = solution.toBigDecimal(MathContext.UNLIMITED)
 
     override fun solver(): ArrayList<Array<Enum<ArithmeticOperators>>> {
-        // could use an IntArray as CharArray representation, but the speed didn't matter
-        // this way it is much easier to debug visually for me
         val possibleSolutions = ArrayList<Array<Enum<ArithmeticOperators>>>()
 
         for (operators in createOperatorVariations()) {
@@ -54,7 +54,7 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
             }
             else {
                 operatorVariations[currentPosition] = currentOperator // checked positions
-                // goes from the numerical representation of the operators to the char representations
+                // goes from the numerical representation of the operators to the enum representations
                 // you could evaluate the valid results here to not save every possible variation to do it later
                 // this way it is easier to test
                 variations.add(Array(amountOfOperators) { i -> operators[operatorVariations[i]] })
@@ -91,7 +91,7 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
         val operatorList = operatorsToCheck.toMutableList()
         val numberList = numbers.toMutableList()
 
-        var result:Float
+        var result:BigDecimal
         // could be done with a parser but tbh I didn't want to write one
         for (operatorToCheck in ArithmeticOperators.values()) {
             var i = 0
@@ -121,7 +121,7 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
     }
 
 
-    private fun calculationFromOperator(operator: Enum<ArithmeticOperators>):(Float, Float)->Float {
+    private fun calculationFromOperator(operator: Enum<ArithmeticOperators>):(BigDecimal, BigDecimal)->BigDecimal{
         return when(operator) {
             ArithmeticOperators.ADD->{a,b->a+b}
             ArithmeticOperators.SUBTRACT->{ a, b->a-b}

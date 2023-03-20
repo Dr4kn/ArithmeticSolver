@@ -4,6 +4,6 @@
 package arithmeticOperatorSolver
 
 fun main() {
-    Solver(floatArrayOf(-10F, 15F, 15F, 5F, 13F), -5F)
+    Solver(arrayOf(-10F, 15F, 15F, 5F, 13F), -5F)
 }
 // TODO add cli interface

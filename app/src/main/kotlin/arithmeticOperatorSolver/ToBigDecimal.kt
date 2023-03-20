@@ -8,3 +8,7 @@ fun Byte.toBigDecimal(mathContext: MathContext): BigDecimal = BigDecimal(this.to
 
 fun Short.toBigDecimal(): BigDecimal = BigDecimal.valueOf(this.toLong())
 fun Short.toBigDecimal(mathContext: MathContext): BigDecimal = BigDecimal(this.toLong(), mathContext)
+
+fun Number.toBigDecimal(mathContext: MathContext): BigDecimal {
+    return BigDecimal(this.toLong(), mathContext)
+}
