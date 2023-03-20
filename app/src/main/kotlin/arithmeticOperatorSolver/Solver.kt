@@ -119,15 +119,4 @@ class Solver(numbers: Array<Number>, solution: Number) : ISolver {
         // this should NEVER happen (I think)
         throw IllegalStateException("Every operation should be checked")
     }
-
-
-    private fun calculationFromOperator(operator: Enum<ArithmeticOperators>):(BigDecimal, BigDecimal)->BigDecimal{
-        return when(operator) {
-            ArithmeticOperators.ADD->{a,b->a+b}
-            ArithmeticOperators.SUBTRACT->{ a, b->a-b}
-            ArithmeticOperators.MULTIPLY->{a,b->a*b}
-            ArithmeticOperators.DIVIDE->{a,b->a/b}
-            else -> {throw Exception("Not a valid enum: Must be an enum in ArithmeticOperators to be valid")}
-        }
-    }
 }
