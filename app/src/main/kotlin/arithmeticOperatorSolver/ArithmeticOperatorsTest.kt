@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import java.math.MathContext
 
-class OperatorArithmeticsTest {
+class ArithmeticOperatorsTest {
 
     @Test
     @Description("No simple rounding like done by an Int division should occur")
