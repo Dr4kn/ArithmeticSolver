@@ -1,4 +1,4 @@
-package pietSmietQuizShowSolver
+package arithmeticOperatorSolver
 
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*

@@ -1,4 +1,4 @@
-package pietSmietQuizShowSolver
+package arithmeticOperatorSolver
 
 val operators = ArithmeticOperators.values()
 // TODO refactor to use Big Decimal
@@ -12,8 +12,11 @@ class Solver(private val numbers: FloatArray, private val solution: Float) : ISo
         if (numbers.size == 1) {
             throw IllegalArgumentException("can't calculate operators for a single number")
         }
-    }
+        for (number in numbers) {
+            number.toBigDecimal()
+        }
 
+    }
     private val amountOfOperators = numbers.size - 1
 
 

@@ -1,4 +1,4 @@
-package pietSmietQuizShowSolver
+package arithmeticOperatorSolver
 
 enum class ArithmeticOperators {
     // this is also the order the operations have to occur in
