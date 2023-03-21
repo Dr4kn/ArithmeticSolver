@@ -56,7 +56,7 @@ class SolverTest {
         val solution = 21F
         val solver = Solver(numbers, solution).solver()
         val symbols = arrayListOf(arrayOf(ArithmeticOperators.SUBTRACT, ArithmeticOperators.ADD, ArithmeticOperators.DIVIDE))
-        assertArrayEquals(solver[0], symbols[0])
+        assertArrayEquals(solver[1], symbols[0])
     }
 
     @Test
@@ -89,14 +89,26 @@ class SolverTest {
     fun divideByZero() {
         val numbers = arrayOf<Number>(10F, 0F, 8F, -800000F, 0F)
         val solution = 0F
-        assertTrue(Solver(numbers, solution).solver().isNotEmpty())
+
+        val exception = assertThrows(Exception::class.java) {
+            Solver(numbers, solution).solver()
+        }
+
+        assertEquals("/ by zero",
+            exception.message)
     }
 
     @Test
     fun divideByZeroShort() {
         val numbers = arrayOf<Number>(3F, 0F)
         val solution = 3F
-        assertTrue(Solver(numbers, solution).solver().isNotEmpty())
+
+        val exception = assertThrows(Exception::class.java) {
+            Solver(numbers, solution).solver()
+        }
+
+        assertEquals("/ by zero",
+            exception.message)
     }
 
 
