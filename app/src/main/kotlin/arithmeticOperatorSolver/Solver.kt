@@ -106,7 +106,7 @@ class Solver(numbers: Array<Number>, solution: Number) : ISolver {
                     numberList[i] = result
 
                     if (numberList.size == 1) {
-                        return numberList[0] == solution
+                        return numberList[0].compareTo(solution) == 0
                     }
                 }
                 // necessary because when the same operator is behind it would jump over it
