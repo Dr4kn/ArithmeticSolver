@@ -5,6 +5,7 @@ import java.math.BigDecimal
 import java.math.MathContext
 
 class ToBigDecimalTest {
+    private val mathContext = MathContext.UNLIMITED
 
     @Test
     fun byteToBigDecimal() {
@@ -14,8 +15,8 @@ class ToBigDecimalTest {
 
     @Test
     fun byteToBigDecimalMC() {
-        val b = (127).toByte().toBigDecimal(MathContext.UNLIMITED)
-        assertEquals(BigDecimal(127, MathContext.UNLIMITED), b)
+        val b = (127).toByte().toBigDecimal(mathContext)
+        assertEquals(BigDecimal(127, mathContext), b)
     }
 
     @Test
@@ -26,20 +27,20 @@ class ToBigDecimalTest {
 
     @Test
     fun shortToBigDecimalMC() {
-        val s = (32767).toShort().toBigDecimal(MathContext.UNLIMITED)
-        assertEquals(BigDecimal(32767, MathContext.UNLIMITED), s)
+        val s = (32767).toShort().toBigDecimal(mathContext)
+        assertEquals(BigDecimal(32767, mathContext), s)
     }
 
     @Test
     fun numberToBigDecimalMC() {
         val n:Number = 10
-        assertEquals(BigDecimal(10, MathContext.UNLIMITED), n.toBigDecimal(MathContext.UNLIMITED))
+        assertEquals(BigDecimal(10, mathContext), n.toBigDecimal(MathContext.UNLIMITED))
     }
 
     @Test
     fun decimalWorks() {
         val n:Number = 3.43
-        assertEquals(BigDecimal("3.43", MathContext.UNLIMITED), n.toBigDecimal(MathContext.UNLIMITED))
+        assertEquals(BigDecimal("3.43", mathContext), n.toBigDecimal(MathContext.UNLIMITED))
     }
 
 }

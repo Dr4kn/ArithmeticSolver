@@ -4,8 +4,7 @@ import java.math.BigDecimal
 import java.math.MathContext
 
 private val operators = ArithmeticOperators.values()
-// TODO refactor to use Big Decimal
-
+private val mathContext = MathContext.UNLIMITED
 
 class Solver(numbers: Array<Number>, solution: Number) : ISolver {
     init {
@@ -19,8 +18,8 @@ class Solver(numbers: Array<Number>, solution: Number) : ISolver {
     }
     private val amountOfOperators = numbers.size - 1
 
-    private val numbers = Array(numbers.size) { i -> numbers[i].toBigDecimal(MathContext.UNLIMITED)}
-    private val solution = solution.toBigDecimal(MathContext.UNLIMITED)
+    private val numbers = Array(numbers.size) { i -> numbers[i].toBigDecimal(mathContext)}
+    private val solution = solution.toBigDecimal(mathContext)
 
     override fun solver(): ArrayList<Array<Enum<ArithmeticOperators>>> {
         val possibleSolutions = ArrayList<Array<Enum<ArithmeticOperators>>>()
