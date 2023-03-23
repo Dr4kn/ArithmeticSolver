@@ -86,6 +86,33 @@ class SolverTest {
     }
 
     @Test
+    fun floatingPointOnlyInNumber() {
+        val numbers = arrayOf<Number>(4F, 4)
+        val solution = 8
+        val solver = Solver(numbers, solution).solver()
+        val symbols = arrayListOf(arrayOf(ArithmeticOperators.ADD))
+        assertArrayEquals(symbols[0], solver[0])
+    }
+
+    @Test
+    fun floatingPointOnlyInAnswer() {
+        val numbers = arrayOf<Number>(4, 4)
+        val solution = 8F
+        val solver = Solver(numbers, solution).solver()
+        val symbols = arrayListOf(arrayOf(ArithmeticOperators.ADD))
+        assertArrayEquals(symbols[0], solver[0])
+    }
+
+    @Test
+    fun answerWithDecimalPlaces() {
+        val numbers = arrayOf<Number>(4, 4)
+        val solution = 8.00F
+        val solver = Solver(numbers, solution).solver()
+        val symbols = arrayListOf(arrayOf(ArithmeticOperators.ADD))
+        assertArrayEquals(symbols[0], solver[0])
+    }
+
+    @Test
     fun divideByZero() {
         val numbers = arrayOf<Number>(10F, 0F, 8F, -800000F, 0F)
         val solution = 0F
