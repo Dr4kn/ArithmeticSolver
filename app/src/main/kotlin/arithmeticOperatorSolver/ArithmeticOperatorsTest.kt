@@ -65,11 +65,13 @@ class ArithmeticOperatorsTest {
 
     @Test
     fun multiplyPrecision() {
-        assertEquals((7).toBigDecimal(MathContext.UNLIMITED),
-            calculationFromOperator(ArithmeticOperators.SUBTRACT)
-                .invoke(
-                    (3.5).toBigDecimal(MathContext.UNLIMITED),
-                    (2).toBigDecimal(MathContext.UNLIMITED))
+        assertTrue((7).toBigDecimal(MathContext.UNLIMITED)
+            .compareTo(
+                calculationFromOperator(ArithmeticOperators.MULTIPLY)
+                    .invoke(
+                        (3.5).toBigDecimal(MathContext.UNLIMITED),
+                        (2).toBigDecimal(MathContext.UNLIMITED))
+            ) == 0
         )
     }
 }
