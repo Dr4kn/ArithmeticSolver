@@ -30,11 +30,16 @@ class ToBigDecimalTest {
         assertEquals(BigDecimal(32767, MathContext.UNLIMITED), s)
     }
 
-
     @Test
     fun numberToBigDecimalMC() {
         val n:Number = 10
         assertEquals(BigDecimal(10, MathContext.UNLIMITED), n.toBigDecimal(MathContext.UNLIMITED))
+    }
+
+    @Test
+    fun decimalWorks() {
+        val n:Number = 3.43
+        assertEquals(BigDecimal("3.43", MathContext.UNLIMITED), n.toBigDecimal(MathContext.UNLIMITED))
     }
 
 }
