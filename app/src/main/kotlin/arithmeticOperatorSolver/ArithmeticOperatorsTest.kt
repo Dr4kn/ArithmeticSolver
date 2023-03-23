@@ -31,11 +31,13 @@ class ArithmeticOperatorsTest {
 
     @Test
     fun behaviourForInfiniteQuotient() {
-        assertEquals((2).toBigDecimal(MathContext.UNLIMITED),
-            calculationFromOperator(ArithmeticOperators.DIVIDE)
-                .invoke(
-                    (0.2).toBigDecimal(MathContext.UNLIMITED),
-                    (0.1).toBigDecimal(MathContext.UNLIMITED))
+        assertTrue((2).toBigDecimal(MathContext.UNLIMITED)
+            .compareTo(
+                calculationFromOperator(ArithmeticOperators.DIVIDE)
+                    .invoke(
+                        (0.2).toBigDecimal(MathContext.UNLIMITED),
+                        (0.1).toBigDecimal(MathContext.UNLIMITED))
+            ) == 0
         )
     }
 
