@@ -56,7 +56,7 @@ class SolverTest {
         val solution = 21F
         val solver = Solver(numbers, solution).solver()
         val symbols = arrayListOf(arrayOf(ArithmeticOperators.SUBTRACT, ArithmeticOperators.ADD, ArithmeticOperators.DIVIDE))
-        assertArrayEquals(solver[1], symbols[0])
+        assertArrayEquals(solver[0], symbols[0])
     }
 
     @Test
