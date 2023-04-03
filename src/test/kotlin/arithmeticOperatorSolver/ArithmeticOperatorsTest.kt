@@ -3,6 +3,7 @@ package arithmeticOperatorSolver
 import jdk.jfr.Description
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
+import java.math.BigDecimal
 import java.math.MathContext
 
 class ArithmeticOperatorsTest {
@@ -71,6 +72,67 @@ class ArithmeticOperatorsTest {
                         (3.5).toBigDecimal(mathContext),
                         (2).toBigDecimal(mathContext))
             ) == 0
+        )
+    }
+
+    @Test
+    fun sumHasMoreDecimalPlaces() {
+        val sum = calculationFromOperator(ArithmeticOperators.ADD)
+            .invoke(
+                (3.500).toBigDecimal(mathContext),
+                (2).toBigDecimal(mathContext))
+
+        assertTrue((5.500000).toBigDecimal(mathContext)
+            .compareTo(sum) == 0
+        )
+    }
+
+    @Test
+    fun differenceHasMoreDecimalPlaces() {
+        val difference = calculationFromOperator(ArithmeticOperators.SUBTRACT)
+            .invoke(
+                (3).toBigDecimal(mathContext),
+                (2.5987).toBigDecimal(mathContext))
+
+        assertTrue((0.401300).toBigDecimal(mathContext)
+            .compareTo(difference) == 0
+        )
+    }
+
+    @Test
+    fun productHasMoreDecimalPlaces() {
+        val product = calculationFromOperator(ArithmeticOperators.MULTIPLY)
+            .invoke(
+                (3.512).toBigDecimal(mathContext),
+                (2.8).toBigDecimal(mathContext))
+
+        assertTrue((9.8336).toBigDecimal(mathContext)
+            .compareTo(product) == 0
+        )
+    }
+
+    @Test
+    fun quotientHasMoreDecimalPlaces() {
+        val quotient = calculationFromOperator(ArithmeticOperators.DIVIDE)
+            .invoke(
+                (8.3).toBigDecimal(mathContext),
+                (5.263).toBigDecimal(mathContext))
+
+        assertTrue((1.577047311).toBigDecimal(mathContext)
+            .compareTo(quotient) == 0
+        )
+    }
+
+    @Test
+    fun maxDecimalPlaces() {
+        // there isn't a right or wrong here just if it matches the max that is specified.
+        // can be changed to a lower number for performance or a higher one if the increased precision is needed
+        val fraction = calculationFromOperator(ArithmeticOperators.DIVIDE)
+            .invoke(
+                (1).toBigDecimal(mathContext),
+                (3).toBigDecimal(mathContext))
+        assertTrue((0.333_333_333_3).toBigDecimal(mathContext)
+            .compareTo(fraction) == 0
         )
     }
 }
