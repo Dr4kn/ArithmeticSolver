@@ -139,7 +139,7 @@ class SolverTest {
             Solver(numbers, solution).solver()
         }
 
-        assertEquals("/ by zero",
+        assertEquals("Division by zero",
             exception.message)
     }
 
