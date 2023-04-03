@@ -1,11 +1,15 @@
-## IDEs
-.idea/
+### Fleet ###
 .fleet/*
-# except fleet run
 !.fleet/run.json
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 out/
-
+!**/src/main/**/out/
+!**/src/test/**/out/
 
 ## Gradle
 # Ignore Gradle project-specific cache directory
@@ -13,9 +17,9 @@ out/
 # Ignore Gradle build output directory
 build/
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-# Cache of project
-.gradletasknamecache
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ## Package Files
 *.jar
