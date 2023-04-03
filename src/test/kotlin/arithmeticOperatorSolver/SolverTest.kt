@@ -126,7 +126,7 @@ class SolverTest {
             Solver(numbers, solution).solver()
         }
 
-        assertEquals("/ by zero",
+        assertEquals("Division undefined",
             exception.message)
     }
 
