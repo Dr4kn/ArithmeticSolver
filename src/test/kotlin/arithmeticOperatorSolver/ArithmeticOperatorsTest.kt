@@ -3,7 +3,6 @@ package arithmeticOperatorSolver
 import jdk.jfr.Description
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
-import java.math.BigDecimal
 import java.math.MathContext
 
 class ArithmeticOperatorsTest {

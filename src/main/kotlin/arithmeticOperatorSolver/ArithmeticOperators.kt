@@ -2,7 +2,6 @@ package arithmeticOperatorSolver
 
 import java.math.BigDecimal
 import java.math.MathContext
-import java.math.RoundingMode
 
 enum class ArithmeticOperators {
     // this is also the order the operations have to occur in
