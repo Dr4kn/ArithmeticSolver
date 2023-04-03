@@ -1,1 +1,1 @@
-rootProject.name = "ArithmeticOperatorSolver"
+rootProject.name = "ArithmeticSolver"
