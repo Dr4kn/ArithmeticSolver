@@ -113,7 +113,6 @@ class Solver(numbers: Array<Number>, solution: Number) : ISolver {
                 }
             }
         }
-        // FIXME refactor in a way that this isn't needed anymore
         // this should NEVER happen (I think)
         throw IllegalStateException("Every operation should be checked")
     }
