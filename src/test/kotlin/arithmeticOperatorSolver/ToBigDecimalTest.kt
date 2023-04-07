@@ -1,6 +1,7 @@
 package arithmeticOperatorSolver
-import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
+
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import java.math.BigDecimal
 import java.math.MathContext
 
@@ -33,13 +34,13 @@ class ToBigDecimalTest {
 
     @Test
     fun numberToBigDecimalMC() {
-        val n:Number = 10
+        val n: Number = 10
         assertEquals(BigDecimal(10, mathContext), n.toBigDecimal(MathContext.UNLIMITED))
     }
 
     @Test
     fun decimalWorks() {
-        val n:Number = 3.43
+        val n: Number = 3.43
         assertEquals(BigDecimal("3.43", mathContext), n.toBigDecimal(MathContext.UNLIMITED))
     }
 

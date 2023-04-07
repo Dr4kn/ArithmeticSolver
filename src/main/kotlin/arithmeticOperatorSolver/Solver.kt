@@ -16,9 +16,10 @@ class Solver(numbers: Array<Number>, solution: Number) : ISolver {
         }
 
     }
+
     private val amountOfOperators = numbers.size - 1
 
-    private val numbers = Array(numbers.size) { i -> numbers[i].toBigDecimal(mathContext)}
+    private val numbers = Array(numbers.size) { i -> numbers[i].toBigDecimal(mathContext) }
     private val solution = solution.toBigDecimal(mathContext)
 
     override fun solver(): ArrayList<Array<Enum<ArithmeticOperators>>> {
@@ -42,16 +43,15 @@ class Solver(numbers: Array<Number>, solution: Number) : ISolver {
     private fun createOperatorVariations(): ArrayList<Array<Enum<ArithmeticOperators>>> {
         val variations = ArrayList<Array<Enum<ArithmeticOperators>>>()
         // has to start with the maximum because the array is incremented from the back
-        var currentPosition:Int = amountOfOperators - 1
+        var currentPosition: Int = amountOfOperators - 1
         var currentOperator = 0
-        val operatorVariations = IntArray(amountOfOperators) {0}
+        val operatorVariations = IntArray(amountOfOperators) { 0 }
 
         while (true) {
             // if not last element only do it one time
             if (currentPosition < amountOfOperators - 1) {
                 currentPosition++
-            }
-            else {
+            } else {
                 operatorVariations[currentPosition] = currentOperator // checked positions
                 // goes from the numerical representation of the operators to the enum representations
                 // you could evaluate the valid results here to not save every possible variation to do it later
@@ -61,8 +61,7 @@ class Solver(numbers: Array<Number>, solution: Number) : ISolver {
                 // if not last element go to the next right one
                 if (currentOperator < operators.size - 1) {
                     currentOperator++
-                }
-                else {
+                } else {
                     // goes one left for every position that is already done
                     while (true) {
                         currentPosition--
@@ -90,7 +89,7 @@ class Solver(numbers: Array<Number>, solution: Number) : ISolver {
         val operatorList = operatorsToCheck.toMutableList()
         val numberList = numbers.toMutableList()
 
-        var result:BigDecimal
+        var result: BigDecimal
         // could be done with a parser but tbh I didn't want to write one
         for (operatorToCheck in ArithmeticOperators.values()) {
             var i = 0

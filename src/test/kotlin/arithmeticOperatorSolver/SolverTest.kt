@@ -1,8 +1,7 @@
 package arithmeticOperatorSolver
 
-import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
-import kotlin.Exception
+import org.junit.jupiter.api.Test
 
 class SolverTest {
 
@@ -15,8 +14,10 @@ class SolverTest {
             Solver(numbers, solution).solver()
         }
 
-        assertEquals("no number was provided",
-            exception.message)
+        assertEquals(
+            "no number was provided",
+            exception.message
+        )
     }
 
     // FIXME should this return an error or give a true or false?
@@ -29,8 +30,10 @@ class SolverTest {
             Solver(numbers, solution).solver()
         }
 
-        assertEquals("can't calculate operators for a single number",
-            exception.message)
+        assertEquals(
+            "can't calculate operators for a single number",
+            exception.message
+        )
     }
 
     @Test
@@ -41,6 +44,7 @@ class SolverTest {
         val symbols = arrayListOf(arrayOf(ArithmeticOperators.DIVIDE))
         assertArrayEquals(solver[0], symbols[0])
     }
+
     @Test
     fun solveForThreeNumbers() {
         val numbers = arrayOf<Number>(10F, 6F, 15F)
@@ -55,11 +59,13 @@ class SolverTest {
         val numbers = arrayOf<Number>(25F, 8F, 12F, 3F)
         val solution = 21F
         val solver = Solver(numbers, solution).solver()
-        val symbols = arrayListOf(arrayOf(
-            ArithmeticOperators.SUBTRACT,
-            ArithmeticOperators.ADD,
-            ArithmeticOperators.DIVIDE
-        ))
+        val symbols = arrayListOf(
+            arrayOf(
+                ArithmeticOperators.SUBTRACT,
+                ArithmeticOperators.ADD,
+                ArithmeticOperators.DIVIDE
+            )
+        )
         assertArrayEquals(solver[0], symbols[0])
     }
 
@@ -68,12 +74,14 @@ class SolverTest {
         val numbers = arrayOf<Number>(-10F, 15F, 15F, 5F, 13F)
         val solution = -5F
         val solver = Solver(numbers, solution).solver()
-        val symbols = arrayListOf(arrayOf(
-            ArithmeticOperators.ADD,
-            ArithmeticOperators.ADD,
-            ArithmeticOperators.DIVIDE,
-            ArithmeticOperators.SUBTRACT
-        ))
+        val symbols = arrayListOf(
+            arrayOf(
+                ArithmeticOperators.ADD,
+                ArithmeticOperators.ADD,
+                ArithmeticOperators.DIVIDE,
+                ArithmeticOperators.SUBTRACT
+            )
+        )
         assertArrayEquals(solver[0], symbols[0])
     }
 
@@ -126,8 +134,10 @@ class SolverTest {
             Solver(numbers, solution).solver()
         }
 
-        assertEquals("Division undefined",
-            exception.message)
+        assertEquals(
+            "Division undefined",
+            exception.message
+        )
     }
 
     @Test
@@ -139,8 +149,10 @@ class SolverTest {
             Solver(numbers, solution).solver()
         }
 
-        assertEquals("Division by zero",
-            exception.message)
+        assertEquals(
+            "Division by zero",
+            exception.message
+        )
     }
 
 
@@ -167,7 +179,9 @@ class SolverTest {
             Solver(numbers, solution).solver()
         }
 
-        assertEquals("There is no possible solution for this combination",
-            exception.message)
+        assertEquals(
+            "There is no possible solution for this combination",
+            exception.message
+        )
     }
 }
